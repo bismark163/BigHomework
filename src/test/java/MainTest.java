@@ -8,15 +8,19 @@ import org.testng.annotations.Test;
 
 public class MainTest {
     public RemoteWebDriver driver;
+    public RemoteWebDriver driver2;
 
     @BeforeTest
     public void start() {
-        Browser browserObj = BrowserFactory.get();
-        this.driver = browserObj.launchBrowser();
+        Browser browserObj1 = BrowserFactory.get();
+        this.driver = browserObj1.launchBrowser();
     }
 
     @Test
     public void testA() {
+        Browser browserObj2 = BrowserFactory.get("firefox");
+        this.driver2 = browserObj2.launchBrowser();
+
         this.driver.get("https://ya.ru");
     }
 
@@ -28,6 +32,7 @@ public class MainTest {
     @AfterClass
     public void finish() {
         this.driver.quit();
+        this.driver2.quit();
 //        this.driver.close();
     }
 }
