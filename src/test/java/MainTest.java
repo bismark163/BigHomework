@@ -1,4 +1,5 @@
-import org.openqa.selenium.chrome.ChromeDriver;
+import core.Browser;
+import core.BrowserFactory;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
@@ -10,7 +11,8 @@ public class MainTest {
 
     @BeforeTest
     public void start() {
-        this.driver = new ChromeDriver();
+        Browser browserObj = BrowserFactory.get();
+        this.driver = browserObj.launchBrowser();
     }
 
     @Test
@@ -25,7 +27,7 @@ public class MainTest {
 
     @AfterClass
     public void finish() {
-        this.driver.close();
         this.driver.quit();
+//        this.driver.close();
     }
 }
