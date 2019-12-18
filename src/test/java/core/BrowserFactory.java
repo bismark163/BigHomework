@@ -17,9 +17,9 @@ public class BrowserFactory {
 
         if (type.equals("Firefox") || type.equals("firefox")) {
             return new FirefoxBrowser();
-        } else if (type.equals("Chrome") || type.equals("chrome")) {
-            return new ChromeBrowser();
-        } else if (type.equals("MChrome") || type.equals("mchrome")) {
+        } //else if (type.equals("Chrome") || type.equals("chrome")) {
+        // return new ChromeBrowser();
+        else if (type.equals("MChrome") || type.equals("mchrome")) {
             return new MobileChromeBrowser();
         } else {
             throw new IllegalArgumentException("Cannot launch browser type " + type);

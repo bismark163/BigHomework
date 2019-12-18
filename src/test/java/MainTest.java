@@ -1,6 +1,6 @@
-import core.Browser;
-import core.BrowserFactory;
-
+import core.ChromeBrowser;
+import core.Users;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
@@ -8,20 +8,22 @@ import org.testng.annotations.Test;
 
 public class MainTest {
     public RemoteWebDriver driver;
-    public RemoteWebDriver driver2;
+
 
     @BeforeTest
     public void start() {
-        Browser browserObj1 = BrowserFactory.get();
-        this.driver = browserObj1.launchBrowser();
+        ChromeBrowser browserObj = new ChromeBrowser();
+        this.driver = browserObj.launchBrowser();
+
+
+
     }
 
     @Test
     public void testA() {
-        Browser browserObj2 = BrowserFactory.get("firefox");
-        this.driver2 = browserObj2.launchBrowser();
+        this.driver.get(Users.getInstance().getUrl());
+        enterLogin(Users.getInstance().getLogin());
 
-        this.driver.get("https://ya.ru");
     }
 
     @Test
@@ -32,7 +34,14 @@ public class MainTest {
     @AfterClass
     public void finish() {
         this.driver.quit();
-        this.driver2.quit();
+
 //        this.driver.close();
+    }
+
+    public void enterLogin(String login) {
+
+        WebElement loginField = driver.findElementById("identifierId");
+        loginField.click();
+        loginField.sendKeys(login);
     }
 }
