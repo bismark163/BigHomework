@@ -1,4 +1,4 @@
-package core;
+package core.users;
 
 import java.util.HashMap;
 

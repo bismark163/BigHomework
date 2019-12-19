@@ -1,9 +1,9 @@
-package core;
+package core.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class MailObject implements PageObject {
+public class MailObject extends AbstractPage {
     private RemoteWebDriver driver;
 
 
@@ -11,6 +11,7 @@ public class MailObject implements PageObject {
         WebElement loginField = driver.findElementById("identifierId");
         loginField.click();
         loginField.sendKeys(login);
+
     }
 
     public void enterPass(String pass) {

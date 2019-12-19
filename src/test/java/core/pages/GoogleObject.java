@@ -1,11 +1,12 @@
-package core;
+package core.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class GoogleObject {
+public class GoogleObject extends AbstractPage {
 
-    public RemoteWebDriver driver;
+
+    private RemoteWebDriver driver;
 
 
     public void enterLogin(String login) {
@@ -13,6 +14,7 @@ public class GoogleObject {
         WebElement loginField = driver.findElementById("identifierId");
         loginField.click();
         loginField.sendKeys(login);
+
     }
 
     public void enterPass(String pass) {
@@ -20,12 +22,13 @@ public class GoogleObject {
     }
 
     public void clickNext() {
+        WebElement nextButton = driver.findElementById("identifierNext");
+        nextButton.click();
 
     }
 
     public void checkInboxOpened() {
-        WebElement nextButton = driver.findElementById("identifierNext");
-        nextButton.click();
+
 
     }
 }
