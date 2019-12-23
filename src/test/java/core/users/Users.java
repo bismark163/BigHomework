@@ -39,7 +39,7 @@ public class Users {
 
     public static Users getInstance() {
         if (instance == null) {
-            instance = new Users(getData());
+            instance = new Users(getUserData());
         }
         return instance;
     }
@@ -56,7 +56,7 @@ public class Users {
         return getEnvironment().equals("google");
     }
 
-    private static HashMap<String, String> getData() {
+    private static HashMap<String, String> getUserData() {
         if (isMail()) {
             return MailUser.data;
         } else if (isYandex()) {

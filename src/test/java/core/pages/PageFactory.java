@@ -1,22 +1,25 @@
 package core.pages;
 
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 public class PageFactory {
 
 
-    public static AbstractPage getEnv() {
-        String env = System.getenv("environment");
-        return getPag(env);
+    public static AbstractPage getSystemEnvironment(RemoteWebDriver driver) {
+        String environment = System.getenv("environment");
+        return getRequiredPage(environment, driver);
     }
 
-    private static AbstractPage getPag(String environment) {
+
+    private static AbstractPage getRequiredPage(String environment, RemoteWebDriver driver) {
         if (environment.equals("mail")) {
-            return new MailObject();
+            return new MailObject(driver);
         } else if (environment.equals("yandex")) {
-            return new YandexObject();
+            return new YandexObject(driver);
         } else if (environment.equals("google")) {
-            return new GoogleObject();
+            return new GoogleObject(driver);
         } else {
-            throw new IllegalArgumentException("Cannot launch object " + environment);
+            throw new IllegalArgumentException("Cannot launch object for environment " + environment);
         }
     }
 }

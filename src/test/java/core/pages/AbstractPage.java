@@ -4,7 +4,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AbstractPage implements PageObject {
 
-    private RemoteWebDriver driver;
+    protected RemoteWebDriver driver;
+
+    public AbstractPage(RemoteWebDriver driver) {
+        this.driver = driver;
+    }
 
     public void enterLogin(String login) {
 
